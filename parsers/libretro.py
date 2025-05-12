@@ -7,6 +7,7 @@ with ROM IDs and box art URLs.
 import requests
 import re
 from urllib.parse import quote, unquote
+from utils.parse_utils import remove_ext
 
 # Platform-specific metadata definitions
 PLATFORMS = {
@@ -382,10 +383,10 @@ def parse(entries, flags):
 
             # Extract box art filenames from the HTML response
             results = re.findall(
-                r"<tr>.*alt=\"\[IMG\]\".*?href=\"(.*?)\..*?\".*?>.*?</tr>", r.text)
+                r"<tr>.*alt=\"\[IMG\]\".*?href=\"(.*?)\".*?>.*?</tr>", r.text)
             for result in results:
                 PLATFORMS[entry['platform']]['available_boxarts'].append(
-                    unquote(result))
+                    remove_ext(unquote(result)))
 
         # Add box art URL if available
         if entry['title'] in PLATFORMS[entry['platform']]['available_boxarts']:
