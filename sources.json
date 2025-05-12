@@ -1214,6 +1214,20 @@
                 "no_intro": {}
             },
             "type": "Game"
+        },
+        {
+            "format": "iso",
+            "regions": [],
+            "urls": [
+                "https://archive.org/download/PSNCollectionByGhostware"
+            ],
+            "scraper": "internet_archive",
+            "filter": "(.*)\\.iso",
+            "parsers": {
+                "libretro": {},
+                "no_intro": {}
+            },
+            "type": "Game"
         }
     ],
     "ps3": [
