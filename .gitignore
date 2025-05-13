@@ -1,8 +1,8 @@
-venv/
-config.json
-cache/
-data/
-static/
-scrapers/internet_archive_creds.json
-*.db
+/venv/
+/config.json
+/cache/
+/data/
+/static/
+/scrapers/internet_archive_creds.json
+/*.db
 __pycache__/
