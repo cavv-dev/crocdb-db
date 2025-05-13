@@ -17,6 +17,14 @@ URLS = [
     'https://www.gametdb.com/ps3tdb.zip?LANG=EN'
 ]
 
+XML_FILES = [
+    'dstdb.xml',
+    'wiitdb.xml',
+    '3dstdb.xml',
+    'wiiutdb.xml',
+    'ps3tdb.xml'
+]
+
 
 def download_gametdb_xmls():
     """Download and extract GameTDB XML files from predefined URLs."""
@@ -26,32 +34,42 @@ def download_gametdb_xmls():
     destination = 'data/gametdb'
     os.makedirs(destination, exist_ok=True)
 
-    for url in URLS:
-        # Download the file
-        r = requests.get(url, headers={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36'
-        })
+    for url, xml_file in zip(URLS, XML_FILES):
+        try:
+            # Download the file
+            r = requests.get(url, headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36'
+            }, timeout=5)
 
-        if r.ok:
-            # Extract the ZIP file name from the URL
-            zip_file_name = url.split('/')[-1].split('?')[0]
-            zip_file_path = os.path.join(destination, zip_file_name)
+            if r.ok:
+                # Extract the ZIP file name from the URL
+                zip_file_name = url.split('/')[-1].split('?')[0]
+                zip_file_path = os.path.join(destination, zip_file_name)
 
-            # Save the downloaded content to a file
-            with open(zip_file_path, 'wb') as f:
-                f.write(r.content)
-            print(f"Downloaded: {zip_file_path}")
+                # Save the downloaded content to a file
+                with open(zip_file_path, 'wb') as f:
+                    f.write(r.content)
+                print(f"Downloaded: {zip_file_path}")
 
-            # Extract the contents of the ZIP file
-            with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-                zip_ref.extractall(destination)
-            print(f"Extracted: {zip_file_path}")
+                # Extract the contents of the ZIP file
+                with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+                    zip_ref.extractall(destination)
+                print(f"Extracted: {zip_file_path}")
 
-            # Remove the ZIP file after extraction
-            os.remove(zip_file_path)
-        else:
-            print(f"Failed to download {url} with status code {r.status_code}")
-            sys.exit(1)
+                # Remove the ZIP file after extraction
+                os.remove(zip_file_path)
+            else:
+                raise Exception(
+                    f"Failed to download {url} with status code {r.status_code}")
+
+        except Exception as e:
+            xml_file_path = os.path.join(destination, xml_file)
+            if os.path.exists(xml_file_path):
+                print(
+                    f"Download failed for {url}, but {xml_file} already exists.")
+            else:
+                print(f"Download failed for {url}. Error: {e}")
+                sys.exit(1)
 
 
 if __name__ == '__main__':
