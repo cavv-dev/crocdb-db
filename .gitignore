@@ -5,4 +5,4 @@ data/
 static/
 scrapers/internet_archive_creds.json
 *.db
-*/__pycache__/
+__pycache__/
