@@ -56,7 +56,7 @@ REGIONS_MAP = {
 LANGUAGES = [
     'En', 'Ja', 'Fr', 'De', 'Es', 'It', 'Nl', 'Pt', 'Sv', 'No', 'Da', 'Fi',
     'Zh', 'Ko', 'Pl', 'Ru', 'Cs', 'Hu', 'Zh-Hant', 'Zh-Hans', 'El', 'Es-XL',
-    'Pt-BR', 'Tr', 'En-GB', 'Ar', 'En+En', 'It+En', 'Ro'
+    'Pt-BR', 'Tr', 'En-GB', 'Ar', 'En+En', 'It+En', 'Ro', 'Af'
 ]
 
 # List of contents that are in parentheses to remove from titles
