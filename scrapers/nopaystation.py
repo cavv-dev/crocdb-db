@@ -101,8 +101,8 @@ def parse_links(result, source, platform, base_url):
 
     name = result['Name']
     filename = url.rstrip('/').split('/')[-1]
-    size = round(float(result['File Size']))
-    size_str = size_bytes_to_str(size)
+    size = round(float(result['File Size'])) if result['File Size'].isdigit() else 0
+    size_str = size_bytes_to_str(size) if size else 0
 
     if url.endswith('.xml'):
         # Handle XML files containing multiple URLs
