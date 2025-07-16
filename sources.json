@@ -2248,7 +2248,7 @@
             "format": "a26",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%202600/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%202600/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2278,7 +2278,7 @@
             "format": "a52",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%205200/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%205200/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2305,10 +2305,27 @@
     ],
     "a78": [
         {
+            "format": "bin",
+            "regions": [],
+            "urls": [
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%207800%20%28BIN%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%207800%20%28BIN%29%20%28Aftermarket%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%207800%20%28BIN%29%20%28Private%29/"
+            ],
+            "scraper": "myrient",
+            "filter": "(.*)\\.zip",
+            "parsers": {
+                "libretro": {},
+                "no_intro": {}
+            },
+            "type": "Game"
+        },
+        {
             "format": "a78",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%207800/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%207800%20%28A78%29%20%28Aftermarket%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%207800%20%28A78%29%20%28Private%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2338,7 +2355,9 @@
             "format": "lnx",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Lynx%20%28LNX%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28LNX%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28LNX%29%20%28Aftermarket%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28LNX%29%20%28Private%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2366,8 +2385,9 @@
             "format": "lyx",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Lynx%20%28LYX%29/",
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Lynx%20%28LYX%29%20%28Private%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28LYX%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28LYX%29%20%28Aftermarket%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28LYX%29%20%28Private%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2381,7 +2401,8 @@
             "format": "bll",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Lynx%20%28BLL%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28BLL%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Lynx%20%28BLL%29%20%28Aftermarket%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2397,7 +2418,8 @@
             "format": "j64",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Jaguar%20%28J64%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28J64%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28J64%29%20%28Aftermarket%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2411,7 +2433,7 @@
             "format": "abs",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Jaguar%20%28ABS%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28ABS%29%20%28Aftermarket%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2425,7 +2447,7 @@
             "format": "cof",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Jaguar%20%28COF%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28COF%29%20%28Aftermarket%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2439,7 +2461,8 @@
             "format": "rom",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Jaguar%20%28ROM%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28ROM%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28ROM%29%20%28Aftermarket%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
@@ -2453,7 +2476,8 @@
             "format": "jag",
             "regions": [],
             "urls": [
-                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Jaguar%20%28JAG%29/"
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28JAG%29/",
+                "https://myrient.erista.me/files/No-Intro/Atari%20-%20Atari%20Jaguar%20%28JAG%29%20%28Aftermarket%29/"
             ],
             "scraper": "myrient",
             "filter": "(.*)\\.zip",
