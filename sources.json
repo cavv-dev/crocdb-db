@@ -1127,7 +1127,6 @@
                 "https://archive.org/download/sony_playstation2_v",
                 "https://archive.org/download/sony_playstation2_w",
                 "https://archive.org/download/sony_playstation2_x",
-                "https://archive.org/download/sony_playstation2_y",
                 "https://archive.org/download/sony_playstation2_z"
             ],
             "scraper": "internet_archive",
@@ -1312,8 +1311,7 @@
                 "https://archive.org/download/PS3_NOINTRO_EUR_4",
                 "https://archive.org/download/PS3_NOINTRO_EUR_5",
                 "https://archive.org/download/PS3_NOINTRO_EUR_6",
-                "https://archive.org/download/PS3_NOINTRO_EUR_7",
-                "https://archive.org/download/PS3_NOINTRO_EUR_8"
+                "https://archive.org/download/PS3_NOINTRO_EUR_7"
             ],
             "scraper": "internet_archive",
             "filter": "(.*)\\.zip",
@@ -1864,44 +1862,12 @@
         {
             "format": "chd",
             "regions": [
-                "us"
-            ],
-            "urls": [
-                "https://archive.org/download/chd_segacd/CHD-SegaCD-NTSC/"
-            ],
-            "scraper": "internet_archive",
-            "filter": "(.*)\\.chd",
-            "parsers": {
-                "libretro": {},
-                "no_intro": {}
-            },
-            "type": "Game"
-        },
-        {
-            "format": "chd",
-            "regions": [
                 "eu"
             ],
             "urls": [
                 "https://myrient.erista.me/files/Internet%20Archive/chadmaster/chd_segacd/CHD-MegaCD-PAL/"
             ],
             "scraper": "myrient",
-            "filter": "(.*)\\.chd",
-            "parsers": {
-                "libretro": {},
-                "no_intro": {}
-            },
-            "type": "Game"
-        },
-        {
-            "format": "chd",
-            "regions": [
-                "eu"
-            ],
-            "urls": [
-                "https://archive.org/download/chd_segacd/CHD-MegaCD-PAL/"
-            ],
-            "scraper": "internet_archive",
             "filter": "(.*)\\.chd",
             "parsers": {
                 "libretro": {},
@@ -1927,41 +1893,11 @@
         },
         {
             "format": "chd",
-            "regions": [
-                "jp"
-            ],
-            "urls": [
-                "https://archive.org/download/chd_segacd/CHD-MegaCD-NTSCJ/"
-            ],
-            "scraper": "internet_archive",
-            "filter": "(.*)\\.chd",
-            "parsers": {
-                "libretro": {},
-                "no_intro": {}
-            },
-            "type": "Game"
-        },
-        {
-            "format": "chd",
             "regions": [],
             "urls": [
                 "https://myrient.erista.me/files/Internet%20Archive/chadmaster/chd_segacd/CHD-SegaCD-Bonus/"
             ],
             "scraper": "myrient",
-            "filter": "(.*)\\.chd",
-            "parsers": {
-                "libretro": {},
-                "no_intro": {}
-            },
-            "type": "Game"
-        },
-        {
-            "format": "chd",
-            "regions": [],
-            "urls": [
-                "https://archive.org/download/chd_segacd/CHD-SegaCD-Bonus/"
-            ],
-            "scraper": "internet_archive",
             "filter": "(.*)\\.chd",
             "parsers": {
                 "libretro": {},
