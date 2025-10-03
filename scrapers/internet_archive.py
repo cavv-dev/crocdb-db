@@ -4,7 +4,7 @@ It includes methods for logging into the Internet Archive, fetching responses,
 extracting entries from HTML content, and creating structured data entries.
 """
 import re
-import requests
+import cloudscraper
 import html
 import json
 import sys
@@ -26,7 +26,7 @@ def get_login_session(creds_path='scrapers/internet_archive_creds.json'):
         with open(creds_path, 'r') as f:
             creds = json.load(f)
 
-        session = requests.Session()
+        session = cloudscraper.create_scraper()
 
         # Initial GET request to establish session cookies
         session.get(LOGIN_URL)

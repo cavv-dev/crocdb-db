@@ -1,7 +1,7 @@
 """
 This module provides utilities for scraping web content and caching responses.
 """
-import requests
+import cloudscraper
 from utils import cache_manager
 
 
@@ -9,7 +9,7 @@ def fetch_url(url, session=None):
     """Fetch the content of a URL and cache the response."""
     if not session:
         # Create a new session if none is provided
-        session = requests.Session()
+        session = cloudscraper.create_scraper()
 
     # Perform the GET request with no timeout specified
     r = session.get(url, timeout=None)
