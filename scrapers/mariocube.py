@@ -16,13 +16,13 @@ HOST_NAME = 'MarioCube'
 def extract_entries(response, source, platform, base_url):
     """Extract entries from the HTML response using regex."""
     entries = []
-    # Regex pattern to extract link, title, and size from table rows
+    # Regex pattern to extract link, title, and size (bytes) from table rows
     pattern = (
-        r"<tr class=\"(?:even|odd)\">.*?<td class=\"indexcolname\"><a href=\"(.*?)\">(.*?)</a>.*?<td class=\"indexcolsize\"> (.*?)</td>"
+        r"<tr><td>-</td><td><a href=\"(.*?)\">(.*?)</a></td><td>(.*?)</td><td></td><td>.*?</td><td>.*?</td><td>.*?</td><td>.*?</td><td>.*?</td></tr>"
     )
-    matches = re.findall(pattern, response)
+    matches = re.findall(pattern, response, re.DOTALL)
 
-    for link, title, size_str in matches:
+    for link, title, size_bytes_str in matches:
         # Apply the filter from the source configuration
         match = re.match(source['filter'], title)
         if not match:
@@ -33,15 +33,15 @@ def extract_entries(response, source, platform, base_url):
 
         # Create an entry and add it to the list
         entries.append(create_entry(
-            link, filename, title, size_str, source, platform, base_url))
+            link, filename, title, size_bytes_str, source, platform, base_url))
 
     return entries
 
 
-def create_entry(link, filename, title, size_str, source, platform, base_url):
+def create_entry(link, filename, title, size_bytes_str, source, platform, base_url):
     """Create a dictionary representing a single entry."""
     name = html.unescape(title)
-    size = size_str_to_bytes(size_str)
+    size = int(size_bytes_str)
     size_str = size_bytes_to_str(size)
     url = join_urls(base_url, link)
 
