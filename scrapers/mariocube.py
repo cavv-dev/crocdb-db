@@ -18,7 +18,7 @@ def extract_entries(response, source, platform, base_url):
     entries = []
     # Regex pattern to extract link, title, and size (bytes) from table rows
     pattern = (
-        r"<tr><td>-</td><td><a href=\"(.*?)\">(.*?)</a></td><td>(.*?)</td><td></td><td>.*?</td><td>.*?</td><td>.*?</td><td>.*?</td><td>.*?</td></tr>"
+        r"<tr><td>-</td><td><a href=\"(.*?)\">(.*?)</a></td><td>(.*?)</td><td></td><td>.*?</td><td>.*?</td>"
     )
     matches = re.findall(pattern, response, re.DOTALL)
 
