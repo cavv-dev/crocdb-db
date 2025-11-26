@@ -1,48 +1,41 @@
 """
 This module provides functionality to scrape and parse entries from MarioCube indexes.
-It includes methods to fetch HTML responses, extract relevant data using regex, and format
-the data into structured entries.
+It detects the plain-text directory listings returned to curl-style clients, extracts file
+metadata, and formats the data into structured entries ready for downstream processing.
 """
-import re
 import html
+import re
 import sys
+import urllib.parse
+
 from utils import cache_manager
-from utils.scrape_utils import fetch_url
-from utils.parse_utils import size_bytes_to_str, size_str_to_bytes, join_urls
+from utils.scrape_utils import fetch_url, create_scraper_session
+from utils.parse_utils import size_str_to_bytes, join_urls
 
 HOST_NAME = 'MarioCube'
 
 
 def extract_entries(response, source, platform, base_url):
-    """Extract entries from the HTML response using regex."""
+    """Extract entries from the ANSI-colored directory listing response."""
     entries = []
-    # Regex pattern to extract link, title, and size (bytes) from table rows
-    pattern = (
-        r"<tr><td>-</td><td><a href=\"(.*?)\">(.*?)</a></td><td>(.*?)</td><td></td><td>.*?</td><td>.*?</td>"
-    )
-    matches = re.findall(pattern, response, re.DOTALL)
 
-    for link, title, size_bytes_str in matches:
-        # Apply the filter from the source configuration
-        match = re.match(source['filter'], title)
+    for filename, size_str in parse_listing_lines(response):
+        match = re.match(source['filter'], filename)
         if not match:
             continue
 
-        filename = title  # Original filename
-        title = match.group(1)  # Extract the filtered title
-
-        # Create an entry and add it to the list
+        title = match.group(1)
+        encoded_link = urllib.parse.quote(filename)
         entries.append(create_entry(
-            link, filename, title, size_bytes_str, source, platform, base_url))
+            encoded_link, filename, title, size_str, source, platform, base_url))
 
     return entries
 
 
-def create_entry(link, filename, title, size_bytes_str, source, platform, base_url):
+def create_entry(link, filename, title, size_str, source, platform, base_url):
     """Create a dictionary representing a single entry."""
     name = html.unescape(title)
-    size = int(size_bytes_str)
-    size_str = size_bytes_to_str(size)
+    size = size_str_to_bytes(size_str)
     url = join_urls(base_url, link)
 
     return {
@@ -65,7 +58,22 @@ def create_entry(link, filename, title, size_bytes_str, source, platform, base_u
     }
 
 
-def fetch_response(url, use_cached):
+def parse_listing_lines(response):
+    """Yield filename and size pairs from the raw listing response."""
+    for raw_line in response.splitlines():
+        line = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]').sub('', raw_line).strip()
+        if not line or line.startswith('#'):
+            continue
+
+        parts = line.split(maxsplit=2)
+        if len(parts) < 3:
+            continue
+
+        _, size_str, filename = parts
+        yield filename, size_str
+
+
+def fetch_response(url, use_cached, session=None):
     """Fetch the response from a URL, optionally using a cached version."""
     if use_cached:
         # Attempt to retrieve the response from the cache
@@ -74,16 +82,17 @@ def fetch_response(url, use_cached):
             return response
 
     # Fetch the URL directly if no cached response is available
-    return fetch_url(url)
+    return fetch_url(url, session=session)
 
 
 def scrape(source, platform, use_cached=False):
     """Scrape entries from MarioCube based on the source configuration."""
     entries = []
+    session = create_scraper_session()
 
     for url in source['urls']:
         # Fetch the response for each URL
-        response = fetch_response(url, use_cached)
+        response = fetch_response(url, use_cached, session=session)
         if not response:
             print(f"Failed to get response from {url}")
             sys.exit(1)
